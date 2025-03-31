@@ -51,13 +51,13 @@
                 :class="{'invisible':!subMenuDomestic,'animate__fadeIn':subMenuDomestic,'animate__animated':subMenuDomestic}" 
               >
                 <li @click="subMenuDomestic = false">
-                  <NuxtLink to="/taiwan/group" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-                    投手
+                  <NuxtLink to="/record/batter" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+                    打者
                   </NuxtLink>
                 </li>
                 <li @click="subMenuDomestic = false">
-                  <NuxtLink to="/taiwan/island" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-                    打者
+                  <NuxtLink to="/record/pitcher" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+                    投手
                   </NuxtLink>
                 </li>
               </ul>
@@ -112,10 +112,10 @@
                 :class="{'hidden':!subMenuForeign,'animate__fadeIn':subMenuForeign,'animate__animated':subMenuForeign}"
               >
                 <li @click="isOpen = false">
-                  <NuxtLink to="/foreign/group" class="flex p-2 transition">投手</NuxtLink>
+                  <NuxtLink to="/record/batter" class="flex p-2 transition">投手</NuxtLink>
                 </li>
                 <li @click="isOpen = false">
-                  <NuxtLink to="/foreign/self" class="flex p-2 transition">打者</NuxtLink>
+                  <NuxtLink to="/record/pitcher" class="flex p-2 transition">打者</NuxtLink>
                 </li>
               </ul>
             </li>
