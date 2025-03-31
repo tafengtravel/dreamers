@@ -161,7 +161,7 @@
             <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
 
               <el-tabs v-model="pitcherTabs" @tab-click="pitcherClick">
-                <el-tab-pane label="勝投" name="first">
+                <el-tab-pane label="勝投" name="W">
                   <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'W', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -169,7 +169,7 @@
                   </el-table>
                 </el-tab-pane>
 
-                <el-tab-pane label="救援" name="second">
+                <el-tab-pane label="救援" name="SV">
                   <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SV', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -177,7 +177,7 @@
                   </el-table>
                 </el-tab-pane>
 
-                <el-tab-pane label="中繼" name="third">
+                <el-tab-pane label="中繼" name="HLD">
                   <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HLD', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -185,7 +185,7 @@
                   </el-table>
                 </el-tab-pane>
 
-                <el-tab-pane label="防禦率" name="fourth">
+                <el-tab-pane label="防禦率" name="ERA">
                   <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'ERA', order: 'ascending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -193,7 +193,7 @@
                   </el-table>
                 </el-tab-pane>
 
-                <el-tab-pane label="三振" name="fifth">
+                <el-tab-pane label="三振" name="K">
                   <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'K', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
@@ -246,6 +246,8 @@ export default {
   },
   data() {
     return {
+      batterTabs:'AVG',
+      pitcherTabs:'W',
       tableDataNEWS: {}, 
 
       nextGame:{
@@ -435,8 +437,15 @@ export default {
 </script>
 <style>
 .el-card {
-    height: auto;
+  height: auto;
 }
+.el-tabs__item.is-active {
+  color: #003364;
+}
+.el-tabs__active-bar {
+  background-color: #003364;
+}
+
 </style>
 
 

@@ -75,7 +75,7 @@ export default {
   bottom: 10px;
 }
 .slick-dots li.slick-active button:before {
-  color: #f60;
+  color: #003364;
 }
 .slick-next {
   right: 30px;

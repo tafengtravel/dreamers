@@ -24,40 +24,40 @@
         <!-- Navbar -->
         <div class="hidden lg:block" >
           <ul class="flex space-x-6 text-base font-sans mr-[20px]">
-            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-orange">
+            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
               <NuxtLink to="/">
                 首頁
               </NuxtLink>
             </li>
-            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-orange">
+            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
               <NuxtLink to="/sale">
                 球員資料
               </NuxtLink>
             </li>
-            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-orange">
+            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
               <NuxtLink to="/sale">
                 戰績排行
               </NuxtLink>
             </li>
-            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-orange">
+            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
               <NuxtLink to="/sale">
                 賽程表
               </NuxtLink>
             </li>
-            <li @mouseover="subMenuDomestic = true;subMenuForeign = false" @mouseleave="subMenuDomestic = false"><a href="#" class="flex text-base title-font transition duration-300 border-b-4 border-transparent hover:border-orange">數據統計</a>
+            <li @mouseover="subMenuDomestic = true;subMenuForeign = false" @mouseleave="subMenuDomestic = false"><a href="#" class="flex text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">數據統計</a>
               <ul 
                 class="absolute animate__fastest rounded-md bg-white w-30 bg-white px-4 py-3 title-font-mobile mb-4 overflow-auto ease-in-out transition-all" 
                 style="top:2.225rem;box-shadow: 0 0 4px rgb(0 0 0 / 30%)"
                 :class="{'invisible':!subMenuDomestic,'animate__fadeIn':subMenuDomestic,'animate__animated':subMenuDomestic}" 
               >
                 <li @click="subMenuDomestic = false">
-                  <NuxtLink to="/taiwan/group" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-orange">
-                    投手成績
+                  <NuxtLink to="/taiwan/group" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+                    投手
                   </NuxtLink>
                 </li>
                 <li @click="subMenuDomestic = false">
-                  <NuxtLink to="/taiwan/island" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-orange">
-                    打者成績
+                  <NuxtLink to="/taiwan/island" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+                    打者
                   </NuxtLink>
                 </li>
               </ul>
@@ -112,10 +112,10 @@
                 :class="{'hidden':!subMenuForeign,'animate__fadeIn':subMenuForeign,'animate__animated':subMenuForeign}"
               >
                 <li @click="isOpen = false">
-                  <NuxtLink to="/foreign/group" class="flex p-2 transition">投手成績</NuxtLink>
+                  <NuxtLink to="/foreign/group" class="flex p-2 transition">投手</NuxtLink>
                 </li>
                 <li @click="isOpen = false">
-                  <NuxtLink to="/foreign/self" class="flex p-2 transition">打者成績</NuxtLink>
+                  <NuxtLink to="/foreign/self" class="flex p-2 transition">打者</NuxtLink>
                 </li>
               </ul>
             </li>
