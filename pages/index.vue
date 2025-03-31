@@ -332,24 +332,6 @@ export default {
       date:'03/30',
     }
 
-    let pitcherScore = [{
-      W:10,
-      SV:2,
-      HLD:2,
-      ERA:3,
-      K:10,
-      name:'朱',
-      number:'5',
-    },{
-      W:10,
-      SV:5,
-      HLD:2,
-      ERA:1.2,
-      K:10,
-      name:'陳',
-      number:'6',
-    },]
-
     let teamStandings = [{
         team:'夢想家',
         win:'10',
@@ -365,13 +347,8 @@ export default {
       },
     ]
 
-    //打者數據
+    //打者數據--------------
     let batterScore = []
-    let batterScoreAVG = []
-    let batterScoreRBI = []
-    let batterScoreHR = []
-    let batterScoreHIT = []
-    let batterScoreSB = []
 
     const axios = (await import('axios')).default
     const { data:batterData } = await axios.get("https://sheets.googleapis.com/v4/spreadsheets/18vDSTH43uJ9FRhKSGLVO-w4_nhO6dO_pl3Ivh3wAy-Q/values/'batter'!A2:N?key=AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78")
@@ -396,11 +373,11 @@ export default {
       }
     }
 
-    batterScoreAVG = batterScore
-    batterScoreRBI = batterScore
-    batterScoreHR = batterScore
-    batterScoreHIT = batterScore
-    batterScoreSB = batterScore    
+    let batterScoreAVG = batterScore
+    let batterScoreRBI = batterScore
+    let batterScoreHR = batterScore
+    let batterScoreHIT = batterScore
+    let batterScoreSB = batterScore    
 
     batterScoreAVG = batterScoreAVG.sort((a, b) => (b.AVG - a.AVG));
     batterScoreAVG = batterScoreAVG.slice(0,5)
@@ -417,10 +394,60 @@ export default {
       batterScoreHR = []
     }
 
-    //投手數據
+    //投手數據--------------
+    let pitcherScore = []
+  
+    const { data:pitcherData } = await axios.get("https://sheets.googleapis.com/v4/spreadsheets/18vDSTH43uJ9FRhKSGLVO-w4_nhO6dO_pl3Ivh3wAy-Q/values/'pitcher'!A2:N?key=AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78")
+    console.log(pitcherData)
 
+    for(let i=0;i<pitcherData.values.length;i++){
+      pitcherScore[i] = {
+        'number':parseInt(pitcherData.values[i][0]),
+        'name':pitcherData.values[i][1],
+        'GP':parseInt(pitcherData.values[i][2]),
+        'GS':parseInt(pitcherData.values[i][3]),
+        'GIF':parseInt(pitcherData.values[i][4]),
+        'IP':parseFloat(pitcherData.values[i][5]),
+        'W':parseInt(pitcherData.values[i][6]),
+        'L':parseInt(pitcherData.values[i][7]),
+        'SV':parseInt(pitcherData.values[i][8]),
+        'HLD':parseInt(pitcherData.values[i][9]),
+        'ERA':parseFloat(pitcherData.values[i][10]),
+        'K':parseInt(pitcherData.values[i][12]),
+        'BB':parseInt(pitcherData.values[i][12]),
+        'HIT':parseInt(pitcherData.values[i][13]),
+        'UR':parseInt(pitcherData.values[i][14]),
+        'ER':parseInt(pitcherData.values[i][15]),
+        'WHIP':parseFloat(pitcherData.values[i][16]),
+      }
+    }
 
+    let pitcherScoreW = pitcherScore
+    let pitcherScoreSV = pitcherScore
+    let pitcherScoreHLD = pitcherScore
+    let pitcherScoreERA = pitcherScore
+    let pitcherScoreK = pitcherScore
 
+    console.log(pitcherScoreW)
+
+    for(let i=0;i<pitcherScoreK.length;i++){
+      pitcherScoreK[i].K = parseInt(pitcherScoreK[i].K)
+    }//K STRING比對有問題 要先轉成INT
+
+    pitcherScoreW = pitcherScoreW.sort((a, b) => (b.W - a.W));
+    pitcherScoreW = pitcherScoreW.slice(0,5)
+    pitcherScoreSV = pitcherScoreSV.sort((a, b) => (b.SV - a.SV));
+    pitcherScoreSV = pitcherScoreSV.slice(0,5)
+    pitcherScoreERA = pitcherScoreERA.sort((a, b) => (b.HLD - a.HLD));
+    pitcherScoreERA = pitcherScoreERA.slice(0,5)
+    pitcherScoreHLD = pitcherScoreHLD.sort((a, b) => (a.ERA - b.ERA));
+    pitcherScoreHLD = pitcherScoreHLD.slice(0,5)
+    pitcherScoreK = pitcherScoreK.sort((a, b) => (b.K - a.K));
+    pitcherScoreK = pitcherScoreK.slice(0,5)
+
+    if(pitcherScoreSV[0].SV == '0'){
+      pitcherScoreSV = []
+    }
 
     return {
       tableDataNEWS:news,
@@ -429,11 +456,18 @@ export default {
       batterScore:batterScore,
       pitcherScore:pitcherScore,
       teamStandings:teamStandings,
+
       batterScoreAVG:batterScoreAVG,
       batterScoreRBI:batterScoreRBI,
       batterScoreHR :batterScoreHR ,
       batterScoreHIT:batterScoreHIT,
       batterScoreSB :batterScoreSB ,
+
+      pitcherScoreW:pitcherScoreW,
+      pitcherScoreSV:pitcherScoreSV,
+      pitcherScoreHLD:pitcherScoreHLD ,
+      pitcherScoreERA:pitcherScoreERA,
+      pitcherScoreK:pitcherScoreK ,
     }
 
   },
