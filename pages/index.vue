@@ -7,7 +7,7 @@
       <BannerHome ref="bannerHomeChild"></BannerHome>
     </div>
 
-    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4 my-5">
+    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4 mt-5">
       <el-card class="box-card rounded-[8px] my-5" :body-style="{ padding: '0px'}" shadow="never" >
         <div slot="header" class="text-2xl font-semibold text-[#003364]">
           <span>最新消息</span>
@@ -26,42 +26,71 @@
       </el-card>
     </div>
 
-    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4 my-5">
+    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4">
       <el-row :gutter="40" style="display:flex;flex-wrap:wrap;">
         <el-col class="el-col el-col-12 el-col-xs-24 el-col-sm-24  el-col-md-12 el-col-lg-12 mb-10">
           <el-card class="box-card rounded-[8px] my-5" :body-style="{ padding: '0px'}" shadow="never" >
             <div slot="header" class="text-2xl font-semibold text-[#003364]">
               <span>賽事預告</span>
             </div>
-            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
-              <el-table :data="tableDataNEWS.slice(0,5)" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'date', order: 'descending'}" :show-header=false>
-                <el-table-column prop="date"width='120%'></el-table-column>
-                <el-table-column prop="title" ></el-table-column>
-                <el-table-column prop="link" width='120%'>
-                  <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">開啟</el-button>
-                  </template>
-                </el-table-column>
-            </el-table>
+            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-7">
+              
+              <el-col class ="el-col el-col-10 el-col-xs-10 el-col-sm-10 el-col-lg-10 ">
+                <div class="text-2xl text-center font-semibold leading-10 text-[#003364] md:text-3xl">
+                  {{nextGame.team}}
+                </div>
+              </el-col>
+              <el-col class ="el-col el-col-4 el-col-xs-4 el-col-sm-4 el-col-lg-4 ">
+                <div class="text-2xl text-center font-semibold leading-10 text-[#003364] md:text-3xl">
+                  V.S
+                </div>
+              </el-col>
+              <el-col class ="el-col el-col-10 el-col-xs-10 el-col-sm-10 el-col-lg-10 ">
+                <div class="text-2xl text-center font-semibold leading-10 text-[#003364] md:text-3xl">
+                  夢想家
+                </div>
+              </el-col>
+
+              <el-col class ="el-col my-7">
+                <div class="text-base text-center font-semibold text-[#333] md:text-lg">
+                  陽明棒球場<br>{{nextGame.date}} {{nextGame.time}}
+                </div>
+              </el-col>
+
             </div>
           </el-card>
         </el-col>
 
         <el-col class="el-col el-col-12 el-col-xs-24 el-col-sm-24  el-col-md-12 el-col-lg-12 mb-10">
+
           <el-card class="box-card rounded-[8px] my-5" :body-style="{ padding: '0px'}" shadow="never" >
             <div slot="header" class="text-2xl font-semibold text-[#003364]">
               <span>最近賽事</span>
             </div>
-            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
-              <el-table :data="tableDataNEWS.slice(0,5)" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'date', order: 'descending'}" :show-header=false>
-                <el-table-column prop="date"width='120%'></el-table-column>
-                <el-table-column prop="title" ></el-table-column>
-                <el-table-column prop="link" width='120%'>
-                  <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">開啟</el-button>
-                  </template>
-                </el-table-column>
-            </el-table>
+            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-7">
+              
+              <el-col class ="el-col el-col-9 el-col-xs-9 el-col-sm-9 el-col-lg-9 ">
+                <div class="text-2xl text-center font-semibold leading-10 text-[#003364] md:text-3xl">
+                  {{lastGame.team}}
+                </div>
+              </el-col>
+              <el-col class ="el-col el-col-6 el-col-xs-6 el-col-sm-6 el-col-lg-6 ">
+                <div class="text-2xl text-center font-semibold leading-10 text-[#003364] md:text-3xl">
+                  {{lastGame.competitorScore}}-{{lastGame.ourScore}}
+                </div>
+              </el-col>
+              <el-col class ="el-col el-col-9 el-col-xs-9 el-col-sm-9 el-col-lg-9 ">
+                <div class="text-2xl text-center font-semibold leading-10 text-[#003364] md:text-3xl">
+                  夢想家
+                </div>
+              </el-col>
+
+              <el-col class ="el-col my-7">
+                <div class="text-base text-center font-semibold text-[#333] md:text-lg">
+                  陽明棒球場<br>{{lastGame.date}} 
+                </div>
+              </el-col>
+
             </div>
           </el-card>
         </el-col>
@@ -69,21 +98,137 @@
     </div>
 
     <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4">
-      <div class ="text-2xl font-semibold text-[#003364]">賽事預告</div>
+      <el-row :gutter="40" style="display:flex;flex-wrap:wrap;">
+        <el-col class="el-col el-col-12 el-col-xs-24 el-col-sm-24  el-col-md-8 el-col-lg-8 mb-10">
+          <el-card class="box-card rounded-[8px]" :body-style="{ padding: '0px'}" shadow="never" >
+            <div slot="header" class="text-2xl font-semibold text-[#003364]">
+              <span>打者排行</span>
+            </div>
+
+            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
+              <el-tabs v-model="batterTabs" @tab-click="batterClick">
+                <el-tab-pane label="打擊率" name="AVG">
+                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'AVG', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="AVG" label="打擊率"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="打點" name="RBI">
+                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'RBI', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="RBI" label="打點"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="全壘打" name="HR">
+                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HR', order: 'descending'}"  :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="HR" label="全壘打"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="安打" name="HIT">
+                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HIT', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="HIT" label="安打"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="盜壘" name="SB">
+                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SB', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="SB" label="盜壘"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+              </el-tabs>
+            </div>
+            
+          </el-card>
+        </el-col>
+
+        <el-col class="el-col el-col-12 el-col-xs-24 el-col-sm-24  el-col-md-8 el-col-lg-8 mb-10">
+          <el-card class="box-card rounded-[8px]" :body-style="{ padding: '0px'}" shadow="never" >
+            <div slot="header" class="text-2xl font-semibold text-[#003364]">
+              <span>投手排行</span>
+            </div>
+
+            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
+
+              <el-tabs v-model="pitcherTabs" @tab-click="pitcherClick">
+                <el-tab-pane label="勝投" name="first">
+                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'W', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="W" label="勝投"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="救援" name="second">
+                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SV', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="SV" label="救援"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="中繼" name="third">
+                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HLD', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="HLD" label="中繼"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="防禦率" name="fourth">
+                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'ERA', order: 'ascending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="ERA" label="防禦率"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+                <el-tab-pane label="三振" name="fifth">
+                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'K', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                    <el-table-column prop="number" label="背號"></el-table-column>
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="K" label="三振"></el-table-column>
+                  </el-table>
+                </el-tab-pane>
+
+              </el-tabs>
+
+            </div>
+            
+          </el-card>
+        </el-col>
+
+        <el-col class="el-col el-col-12 el-col-xs-24 el-col-sm-24  el-col-md-8 el-col-lg-8 mb-10">
+          <el-card class="box-card rounded-[8px]" :body-style="{ padding: '0px'}" shadow="never" >
+            <div slot="header" class="text-2xl font-semibold text-[#003364]">
+              <span>戰績排行</span>
+            </div>
+
+            <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
+              <el-table :data="teamStandings" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'rank', order: 'ascending'}" empty-text="沒有資料">
+                <el-table-column prop="team" label="隊伍"></el-table-column>
+                <el-table-column prop="win" label="勝" width = "40%"></el-table-column>
+                <el-table-column prop="lose" label="敗" width = "40%"></el-table-column>
+                <el-table-column prop="rate" label="勝率"></el-table-column>
+                <el-table-column prop="GB" label="場差"></el-table-column>
+              </el-table>
+            </div>
+          </el-card>
+        </el-col>
+
+      </el-row>
     </div>
 
-    <br><br>
-
-    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4">
-      <div class ="text-2xl font-semibold text-[#003364]">最近賽事</div>
-    </div>
-
-    <div class ="el-col el-col-24 el-col-xs-24 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4">
-   
-    </div>
-
-    <br><br>
-    
   </div>
 </template>
 
@@ -101,7 +246,40 @@ export default {
   },
   data() {
     return {
-      tableDataNEWS: {},   
+      tableDataNEWS: {}, 
+
+      nextGame:{
+        team:'',
+        date:'',
+        time:'',
+      },
+
+      lastGame:{
+        team:'',
+        competitorScore:'',
+        ourScore:'',
+        date:'',
+      },
+
+      batterScore:[{
+        SB:0,
+        HIT:0,
+        HR:0,
+        RBI:0,
+        AVG:0,
+        name:'',
+        number:'',
+      }],
+
+      pitcherScore:[{
+        W:0,
+        SV:0,
+        HLD:0,
+        ERA:0,
+        K:'',
+      }],
+
+      teamStandings:[]
     };
   },
   methods: {
@@ -134,7 +312,103 @@ export default {
       link:'https://www.facebook.com/DremersBaseballclub/photos/a.139380911191671/415348453594914/'
     }]
 
-    return {tableDataNEWS:news}
+    let nextGame = {
+      team:'內向咖啡',
+      date:'04/07',
+      time:'09:00',
+    }
+
+    let lastGame = {
+      team:'復仇者',
+      competitorScore:'4',
+      ourScore:'9',
+      date:'03/30',
+    }
+
+    let batterScore = [{
+      SB:5,
+      HIT:7,
+      HR:1,
+      RBI:20,
+      AVG:0.369,
+      name:'呂皇毅',
+      number:'26',
+    },{
+      SB:7,
+      HIT:4,
+      HR:0,
+      RBI:4,
+      AVG:0.269,
+      name:'朱',
+      number:'2',
+    },{
+      SB:7,
+      HIT:4,
+      HR:0,
+      RBI:4,
+      AVG:0.698,
+      name:'林',
+      number:'3',
+    },{
+      SB:7,
+      HIT:4,
+      HR:0,
+      RBI:4,
+      AVG:0.429,
+      name:'朱',
+      number:'4',
+    },{
+      SB:7,
+      HIT:4,
+      HR:0,
+      RBI:4,
+      AVG:0.559,
+      name:朱,
+      number:'5',
+    }]
+
+    let pitcherScore = [{
+      W:10,
+      SV:2,
+      HLD:2,
+      ERA:3,
+      K:10,
+      name:'朱',
+      number:'5',
+    },{
+      W:10,
+      SV:5,
+      HLD:2,
+      ERA:1.2,
+      K:10,
+      name:'陳',
+      number:'6',
+    },]
+
+    let teamStandings = [{
+        team:'夢想家',
+        win:'10',
+        lose:'1',
+        rate:'0.9',
+        GB:'0'
+      },{
+        team:'內向咖啡',
+        win:'0',
+        lose:'10',
+        rate:'0',
+        GB:'10'
+      },
+    ]
+
+    return {
+      tableDataNEWS:news,
+      nextGame:nextGame,
+      lastGame:lastGame,
+      batterScore:batterScore,
+      pitcherScore:pitcherScore,
+      teamStandings:teamStandings,
+
+    }
 
 
     // let newObj
@@ -160,5 +434,9 @@ export default {
 }
 </script>
 <style>
+.el-card {
+    height: auto;
+}
+</style>
 
-</style>>
+

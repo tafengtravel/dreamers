@@ -71,11 +71,6 @@
           <img src="~/static/ig.jpg" style="width: 40px" class="rounded-full">
         </a>
       </li>
-      <li class="my-2">
-        <a href="https://line.me/ti/g2/bKiBcf3515W4US8Y1MMVPg?utm_source=invitation&amp;utm_medium=link_copy&amp;utm_campaign=default" target="_blank">
-          <img src="~/static/openchat.jpg" style="width: 40px" class="rounded-full">
-        </a>
-      </li>
       <li><el-backtop style="right:20px;bottom:80px"></el-backtop></li>
     </ul>
   </footer>

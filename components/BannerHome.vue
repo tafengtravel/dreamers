@@ -47,20 +47,10 @@ export default {
       swiping:'',
       data:{
         photoBannerDesktop:[
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220525184104.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220525184201.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609110023.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609111016.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609111544.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609111600.jpg',
+          '../../cover_1.jpg',
         ],
         photoBannerMobile:[
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220525184237.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220525184309.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609112226.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609112303.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609112321.jpg',
-          'https://mysys.greenscope.com.tw/pubimg/imgLink/HT00215/20220609112342.jpg',
+          'mobile_cover_1.jpg',
         ]
       },
     };
