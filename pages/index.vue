@@ -106,7 +106,7 @@
             </div>
 
             <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
-              <el-tabs v-model="batterTabs" @tab-click="batterClick">
+              <el-tabs v-model="batterTabs">
                 <el-tab-pane label="打擊率" name="AVG">
                   <el-table :data="batterScoreAVG" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'AVG', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
@@ -160,7 +160,7 @@
 
             <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
 
-              <el-tabs v-model="pitcherTabs" @tab-click="pitcherClick">
+              <el-tabs v-model="pitcherTabs">
                 <el-tab-pane label="勝投" name="W">
                   <el-table :data="pitcherScoreW" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'W', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
@@ -347,12 +347,15 @@ export default {
       },
     ]
 
+    const apiKey = 'AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78'
+    const batterUrlId = 'https://sheets.googleapis.com/v4/spreadsheets/18vDSTH43uJ9FRhKSGLVO-w4_nhO6dO_pl3Ivh3wAy-Q'
+    const pitcherUrlId = 'https://sheets.googleapis.com/v4/spreadsheets/11Ym9FNnIqBucTsSOqDiA_RBXTUiJYvyAiN-0ABE3y-0'
     //打者數據--------------
     let batterScore = []
 
     const axios = (await import('axios')).default
-    const { data:batterData } = await axios.get("https://sheets.googleapis.com/v4/spreadsheets/18vDSTH43uJ9FRhKSGLVO-w4_nhO6dO_pl3Ivh3wAy-Q/values/'batter'!A2:N?key=AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78")
-    console.log(batterData)
+    const { data:batterSheets} = await axios.get(batterUrlId+"?key="+apiKey)
+    const { data:batterData } = await axios.get(batterUrlId+"/values/'"+batterSheets.sheets[batterSheets.sheets.length-1].properties.title+"'!A2:N?key="+apiKey)
 
     for(let i=0;i<batterData.values.length;i++){
       batterScore[i] = {
@@ -396,8 +399,8 @@ export default {
 
     //投手數據--------------
     let pitcherScore = []
-  
-    const { data:pitcherData } = await axios.get("https://sheets.googleapis.com/v4/spreadsheets/18vDSTH43uJ9FRhKSGLVO-w4_nhO6dO_pl3Ivh3wAy-Q/values/'pitcher'!A2:N?key=AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78")
+    const { data:pitcherSheets} = await axios.get(pitcherUrlId+"?key="+apiKey)
+    const { data:pitcherData } = await axios.get(pitcherUrlId+"/values/'"+pitcherSheets.sheets[pitcherSheets.sheets.length-1].properties.title+"'!A2:N?key="+apiKey)
     console.log(pitcherData)
 
     for(let i=0;i<pitcherData.values.length;i++){
