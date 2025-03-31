@@ -363,7 +363,7 @@ export default {
       HR:0,
       RBI:4,
       AVG:0.559,
-      name:朱,
+      name:'朱',
       number:'5',
     }]
 
