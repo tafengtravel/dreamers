@@ -496,6 +496,9 @@ export default {
 .el-tabs__active-bar {
   background-color: #003364;
 }
+.el-table .color-row {
+  background: #C9D6E0;
+}
 
 </style>
 

@@ -153,7 +153,9 @@ export default {
 </script>
 
 <style>
-
+.el-table .color-row {
+  background: #C9D6E0;
+}
 </style>
 
 
