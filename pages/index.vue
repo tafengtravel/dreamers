@@ -108,7 +108,7 @@
             <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 mt-2">
               <el-tabs v-model="batterTabs" @tab-click="batterClick">
                 <el-tab-pane label="打擊率" name="AVG">
-                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'AVG', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="batterScoreAVG" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'AVG', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="AVG" label="打擊率"></el-table-column>
@@ -116,7 +116,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="打點" name="RBI">
-                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'RBI', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="batterScoreRBI" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'RBI', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="RBI" label="打點"></el-table-column>
@@ -124,7 +124,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="全壘打" name="HR">
-                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HR', order: 'descending'}"  :show-header=false empty-text="沒有資料">
+                  <el-table :data="batterScoreHR" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HR', order: 'descending'}"  :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="HR" label="全壘打"></el-table-column>
@@ -132,7 +132,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="安打" name="HIT">
-                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HIT', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="batterScoreHIT" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HIT', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="HIT" label="安打"></el-table-column>
@@ -140,7 +140,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="盜壘" name="SB">
-                  <el-table :data="batterScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SB', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="batterScoreSB" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SB', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="SB" label="盜壘"></el-table-column>
@@ -162,7 +162,7 @@
 
               <el-tabs v-model="pitcherTabs" @tab-click="pitcherClick">
                 <el-tab-pane label="勝投" name="W">
-                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'W', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="pitcherScoreW" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'W', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="W" label="勝投"></el-table-column>
@@ -170,7 +170,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="救援" name="SV">
-                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SV', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="pitcherScoreSV" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'SV', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="SV" label="救援"></el-table-column>
@@ -178,7 +178,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="中繼" name="HLD">
-                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HLD', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="pitcherScoreHLD" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'HLD', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="HLD" label="中繼"></el-table-column>
@@ -186,7 +186,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="防禦率" name="ERA">
-                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'ERA', order: 'ascending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="pitcherScoreERA" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'ERA', order: 'ascending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="ERA" label="防禦率"></el-table-column>
@@ -194,7 +194,7 @@
                 </el-tab-pane>
 
                 <el-tab-pane label="三振" name="K">
-                  <el-table :data="pitcherScore" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'K', order: 'descending'}" :show-header=false empty-text="沒有資料">
+                  <el-table :data="pitcherScoreK" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'K', order: 'descending'}" :show-header=false empty-text="沒有資料">
                     <el-table-column prop="number" label="背號"></el-table-column>
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="K" label="三振"></el-table-column>
@@ -272,6 +272,11 @@ export default {
         name:'',
         number:'',
       }],
+      batterScoreAVG:[],
+      batterScoreRBI:[],
+      batterScoreHR:[],
+      batterScoreHIT:[],
+      batterScoreSB:[],
 
       pitcherScore:[{
         W:0,
@@ -327,48 +332,6 @@ export default {
       date:'03/30',
     }
 
-    let batterScore = [{
-      SB:5,
-      HIT:7,
-      HR:1,
-      RBI:20,
-      AVG:0.369,
-      name:'呂皇毅',
-      number:'26',
-    },{
-      SB:7,
-      HIT:4,
-      HR:0,
-      RBI:4,
-      AVG:0.269,
-      name:'朱',
-      number:'2',
-    },{
-      SB:7,
-      HIT:4,
-      HR:0,
-      RBI:4,
-      AVG:0.698,
-      name:'林',
-      number:'3',
-    },{
-      SB:7,
-      HIT:4,
-      HR:0,
-      RBI:4,
-      AVG:0.429,
-      name:'朱',
-      number:'4',
-    },{
-      SB:7,
-      HIT:4,
-      HR:0,
-      RBI:4,
-      AVG:0.559,
-      name:'朱',
-      number:'5',
-    }]
-
     let pitcherScore = [{
       W:10,
       SV:2,
@@ -402,6 +365,63 @@ export default {
       },
     ]
 
+    //打者數據
+    let batterScore = []
+    let batterScoreAVG = []
+    let batterScoreRBI = []
+    let batterScoreHR = []
+    let batterScoreHIT = []
+    let batterScoreSB = []
+
+    const axios = (await import('axios')).default
+    const { data:batterData } = await axios.get("https://sheets.googleapis.com/v4/spreadsheets/18vDSTH43uJ9FRhKSGLVO-w4_nhO6dO_pl3Ivh3wAy-Q/values/'batter'!A2:N?key=AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78")
+    console.log(batterData)
+
+    for(let i=0;i<batterData.values.length;i++){
+      batterScore[i] = {
+        'number':parseInt(batterData.values[i][0]),
+        'name':batterData.values[i][1],
+        'GP':parseInt(batterData.values[i][2]),
+        'PA':parseInt(batterData.values[i][3]),
+        'AB':parseInt(batterData.values[i][4]),
+        'HIT':parseInt(batterData.values[i][5]),
+        'AVG':parseFloat(batterData.values[i][6]),
+        'RBI':parseInt(batterData.values[i][7]),
+        'R':parseInt(batterData.values[i][8]),
+        'SB':parseInt(batterData.values[i][9]),
+        'K':parseInt(batterData.values[i][10]),
+        'BB':parseInt(batterData.values[i][12]),
+        'OBP':parseFloat(batterData.values[i][12]),
+        'HR':parseInt(batterData.values[i][13]),
+      }
+    }
+
+    batterScoreAVG = batterScore
+    batterScoreRBI = batterScore
+    batterScoreHR = batterScore
+    batterScoreHIT = batterScore
+    batterScoreSB = batterScore    
+
+    batterScoreAVG = batterScoreAVG.sort((a, b) => (b.AVG - a.AVG));
+    batterScoreAVG = batterScoreAVG.slice(0,5)
+    batterScoreRBI = batterScoreRBI.sort((a, b) => (b.RBI - a.RBI));
+    batterScoreRBI = batterScoreRBI.slice(0,5)
+    batterScoreHR = batterScoreHR.sort((a, b) => (b.HR - a.HR));
+    batterScoreHR = batterScoreHR.slice(0,5)
+    batterScoreHIT = batterScoreHIT.sort((a, b) => (b.HIT - a.HIT));
+    batterScoreHIT = batterScoreHIT.slice(0,5)
+    batterScoreSB = batterScoreSB.sort((a, b) => (b.SB - a.SB));
+    batterScoreSB = batterScoreSB.slice(0,5)
+
+    if(batterScoreHR[0].HR == '0'){
+      batterScoreHR = []
+    }
+
+    //投手數據
+
+
+
+
     return {
       tableDataNEWS:news,
       nextGame:nextGame,
@@ -409,24 +429,12 @@ export default {
       batterScore:batterScore,
       pitcherScore:pitcherScore,
       teamStandings:teamStandings,
-
+      batterScoreAVG:batterScoreAVG,
+      batterScoreRBI:batterScoreRBI,
+      batterScoreHR :batterScoreHR ,
+      batterScoreHIT:batterScoreHIT,
+      batterScoreSB :batterScoreSB ,
     }
-
-
-    // let newObj
-    // await fetch('http://45.76.208.132/teamMember/qry').then(function(response) {
-    //   // 直接轉成JSON格式
-    //   return response.text()
-    // }).then(function(obj) {
-    //   // `obj`會是一個JavaScript物件
-    //   // console.log(obj)
-    //   newObj = obj
-      
-    // }).catch(function(err) {
-    //   // console.log(err)
-    // })
-
-    // return { obj: newObj}
 
   },
   mounted() {
