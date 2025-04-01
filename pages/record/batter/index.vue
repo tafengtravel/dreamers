@@ -81,7 +81,6 @@ export default {
     const apiKey = 'AIzaSyDVX99fm1rQctLiW-BCTyo407Q0w4Ku_78'
     const axios = (await import('axios')).default
     const { data:batterSheets} = await axios.get(batterUrlId+"?key="+apiKey)
-    let batterData = []
 
     let optionsYear = []
     let batterRecord = []

@@ -407,7 +407,6 @@ export default {
     let pitcherRecord = []
     const { data:pitcherSheets} = await axios.get(pitcherUrlId+"?key="+apiKey)
     const { data:pitcherData } = await axios.get(pitcherUrlId+"/values/'"+pitcherSheets.sheets[pitcherSheets.sheets.length-1].properties.title+"'!A2:O?key="+apiKey)
-    console.log(pitcherData)
 
     for(let i=0;i<pitcherData.values.length;i++){
       pitcherRecord[i] = {
@@ -436,8 +435,6 @@ export default {
     let pitcherRecordHLD = pitcherRecord
     let pitcherRecordERA = pitcherRecord
     let pitcherRecordK = pitcherRecord
-
-    console.log(pitcherRecordW)
 
     for(let i=0;i<pitcherRecordK.length;i++){
       pitcherRecordK[i].K = parseInt(pitcherRecordK[i].K)
