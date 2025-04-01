@@ -3,47 +3,34 @@
     <div class="md:flex md:justify-center">
       <div class="grid grid-cols-1 gap-8 sm:gap-6 md:grid-cols-2">
         <div class="row-span-2">
-          <h2 class="mb-6 text-md font-semibold text-gray-900 uppercase">大豐旅行社高雄總公司</h2>
+          <h2 class="mb-6 text-md font-semibold text-gray-900 uppercase">夢想家棒球隊 DREAMERS BASEBALL TEAM</h2>
           <ul class="text-gray-600 text-md">
             <li class="my-2">
-              甲種旅行業&emsp;負責人：陳麗珠
+              領隊：呂皇毅
             </li>
             <li class="my-2">
-              交觀甲5609號&emsp;品保高0098號&emsp;公司執照
+              總教練：馮昱雲
             </li>
             <li class="my-2">
-              週一至週五&emsp;08:30-19:00
+              投手教練：莊富傑、郭庭佑
             </li>
             <li class="my-2">
-              電話：(07)552-3515&emsp;傳真：(07)552-3517
+              海外農場總監：王紀霖&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             </li>
-            <li class="my-2">
-              E-Mail：tafengtravel@gmail.com
-            </li>
-            <li class="my-2">
-              高雄市鼓山區中華一路126號11F
-            </li>
+        
           </ul> 
         </div>
         <div>
-          <h2 class="mb-6 text-md font-semibold text-gray-900 uppercase">大豐旅行社台中分公司</h2>
+          <h2 class="mb-6 text-md font-semibold text-gray-900 uppercase"> </h2>
           <ul class="text-gray-600 text-md">
             <li class="my-2">
-              電話：(04)2202-5602 2202-5603&emsp;傳真：(04)2302-0412
+              <br>總務：朱培銘
             </li>
             <li class="my-2">
-              地址：台中市北區中清路一段89號3樓321室
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h2 class="mb-6 text-md font-semibold text-gray-900 uppercase">大豐旅行社台北分公司</h2>
-          <ul class="text-gray-600 text-md">
-            <li class="my-2">
-              電話：(02)2500-0611&emsp;2500-0612
+              視覺設計總監兼粉專小編：王立勝
             </li>
             <li class="my-2">
-              地址：台北市大安區信義路四段279號8樓(籌備處)
+              午餐股長：林世潾&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             </li>
           </ul>
         </div>
@@ -51,7 +38,7 @@
     </div>
     <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8"/>
     <div class="sm:flex sm:items-center sm:justify-between">
-        <span class="text-sm text-gray-500 sm:text-center">©TAFENG TRAVEL SERVICE CO.,LTD
+        <span class="text-sm text-gray-500 sm:text-center">©DREAMERS BASEBALL TEAM
         </span>
     </div>
 

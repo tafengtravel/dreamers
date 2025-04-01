@@ -5,15 +5,18 @@ export default {
   },
 
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'server',
+  target: 'static',
+  router: {
+    base: '/dreamers/' // 例如你的 GitHub Repo 叫 `my-nuxt-app`，就寫 '/my-nuxt-app/'
+  },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: '大豐旅行社｜國內外旅遊專家',
+    title: '夢想家棒球隊 DREAMERS BASEBALL TEAM',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '出遊找大豐，保證玩得瘋，不論是金門、馬祖、綠島、澎湖、蘭嶼、國外自由行、郵輪、票券、訂房、團體旅遊、員工旅遊，通通都有，全部盡在大豐！' }
+      { hid: 'description', name: 'description', content: '夢想家棒球隊，由一群熱愛打棒球的學生及社會人士組成，為高雄草野球聯盟一員' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

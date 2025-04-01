@@ -30,17 +30,17 @@
               </NuxtLink>
             </li>
             <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-              <NuxtLink to="/sale">
+              <NuxtLink to="#">
                 球員資料
               </NuxtLink>
             </li>
             <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-              <NuxtLink to="/sale">
+              <NuxtLink to="#">
                 戰績排行
               </NuxtLink>
             </li>
             <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-              <NuxtLink to="/sale">
+              <NuxtLink to="#">
                 賽程表
               </NuxtLink>
             </li>
@@ -101,9 +101,9 @@
 
           <ul class="divide-y font-sans">
             <li @click="isOpen = false"><NuxtLink to="/" class="flex title-font-mobile my-4 inline-block">首頁</NuxtLink></li>
-            <li @click="isOpen = false"><NuxtLink to="/cruise" class="flex title-font-mobile my-4 inline-block">球員資料</NuxtLink></li>
-            <li @click="isOpen = false"><NuxtLink to="/cruise" class="flex title-font-mobile my-4 inline-block">戰績排行</NuxtLink></li>
-            <li @click="isOpen = false"><NuxtLink to="/cruise" class="flex title-font-mobile my-4 inline-block">賽程表</NuxtLink></li>
+            <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">球員資料</NuxtLink></li>
+            <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">戰績排行</NuxtLink></li>
+            <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">賽程表</NuxtLink></li>
 
             
             <li @click="subMenuForeign = !subMenuForeign"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block" >數據統計</NuxtLink>

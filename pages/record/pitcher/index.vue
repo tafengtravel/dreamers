@@ -68,12 +68,12 @@ export default {
   },
   head() {
     return {
-      title: '國外團體｜大豐旅行社',
+      title: '投手成績｜夢想家棒球隊 DREAMERS BASEBALL TEAM',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: '想要出國卻不想要自由行嗎？那就來參加團體遊吧！專業導遊親自帶團，帶您走訪全世界，最好玩的團體旅遊盡在大豐'
+          content: '夢想家棒球隊，由一群熱愛打棒球的學生及社會人士組成，為高雄草野球聯盟一員'
         }
       ]
     }
