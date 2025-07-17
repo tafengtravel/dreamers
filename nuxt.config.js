@@ -5,7 +5,7 @@ export default {
   },
 
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  target: 'server',
   router: {
     base: '/dreamers/' // 例如你的 GitHub Repo 叫 `my-nuxt-app`，就寫 '/my-nuxt-app/'
   },
