@@ -7,7 +7,7 @@ export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'server',
   router: {
-    base: '/dreamers/' // 例如你的 GitHub Repo 叫 `my-nuxt-app`，就寫 '/my-nuxt-app/'
+   
   },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -34,7 +34,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '@/plugins/firebase',
+    { src: '@/plugins/firebase', ssr: false },
     { src: '@/plugins/vue-slick-carousel.js' },
     { src: '@/plugins/element-ui', ssr: true},
   ],
