@@ -44,11 +44,11 @@
                 成績看板
               </NuxtLink>
             </li>
-            <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+            <!-- <li class="text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
               <NuxtLink to="#">
                 賽程表
               </NuxtLink>
-            </li>
+            </li> -->
             <li @mouseover="subMenuDomestic = true;subMenuForeign = false" @mouseleave="subMenuDomestic = false"><a href="#" class="flex text-base title-font transition duration-300 border-b-4 border-transparent hover:border-[#003364]">數據統計</a>
               <ul 
                 class="absolute animate__fastest rounded-md bg-white w-30 bg-white px-4 py-3 title-font-mobile mb-4 overflow-auto ease-in-out transition-all" 
@@ -56,13 +56,13 @@
                 :class="{'invisible':!subMenuDomestic,'animate__fadeIn':subMenuDomestic,'animate__animated':subMenuDomestic}" 
               >
                 <li @click="subMenuDomestic = false">
-                  <NuxtLink to="/record/batter" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-                    打者
+                  <NuxtLink to="/record/pitcher" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+                    投手
                   </NuxtLink>
                 </li>
                 <li @click="subMenuDomestic = false">
-                  <NuxtLink to="/record/pitcher" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
-                    投手
+                  <NuxtLink to="/record/batter" class="flex items-center p-2 transition duration-300 border-b-4 border-transparent hover:border-[#003364]">
+                    打者
                   </NuxtLink>
                 </li>
               </ul>
@@ -109,7 +109,7 @@
             <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">球員資料</NuxtLink></li>
             <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">戰績排行</NuxtLink></li>
             <li @click="isOpen = false"><NuxtLink to="/box" class="flex title-font-mobile my-4 inline-block">成績看板</NuxtLink></li>
-            <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">賽程表</NuxtLink></li>
+            <!-- <li @click="isOpen = false"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block">賽程表</NuxtLink></li> -->
 
             
             <li @click="subMenuForeign = !subMenuForeign"><NuxtLink to="#" class="flex title-font-mobile my-4 inline-block" >數據統計</NuxtLink>
@@ -118,10 +118,10 @@
                 :class="{'hidden':!subMenuForeign,'animate__fadeIn':subMenuForeign,'animate__animated':subMenuForeign}"
               >
                 <li @click="isOpen = false">
-                  <NuxtLink to="/record/batter" class="flex p-2 transition">投手</NuxtLink>
+                  <NuxtLink to="/record/pitcher" class="flex p-2 transition">投手</NuxtLink>
                 </li>
                 <li @click="isOpen = false">
-                  <NuxtLink to="/record/pitcher" class="flex p-2 transition">打者</NuxtLink>
+                  <NuxtLink to="/record/batter" class="flex p-2 transition">打者</NuxtLink>
                 </li>
               </ul>
             </li>
