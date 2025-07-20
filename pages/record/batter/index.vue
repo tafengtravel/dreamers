@@ -18,7 +18,7 @@
           </el-select>
         </div>
         <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
-          <el-table :data="tableBatterRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}">
+          <el-table :data="tableBatterRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}" show-summary :summary-method="getSummaries">
             <el-table-column prop="number" label="背號" width='75%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
             <el-table-column prop="name" label="姓名"sortable :sort-method = "(a,b)=>{return a.name - b.name}"></el-table-column>
             <el-table-column prop="GP" label="出賽" sortable width='75%' :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
@@ -139,6 +139,60 @@ export default {
           this.tableBatterRecord = element.player
         }
       });
+    },
+    getSummaries({ columns, data }) {
+      const sums = [];
+      let totalHIT = 0;
+      let totalAB = 0;
+      let totalBB = 0;
+      let totalSF = 0;
+
+      columns.forEach((column, index) => {
+        const prop = column.property;
+
+        if (index === 0) {
+          sums[index] = '總計';
+          return;
+        }
+
+        if (prop === 'number' || prop === 'name') {
+          sums[index] = '';
+          return;
+        }
+
+        if (prop === 'AVG' || prop === 'OBP') {
+          sums[index] = ''; // 暫時留空，後面再補
+          return;
+        }
+
+        const values = data.map(item => Number(item[prop]));
+        const validValues = values.filter(val => !isNaN(val));
+        const total = validValues.reduce((sum, val) => sum + val, 0);
+
+        if (prop === 'HIT') totalHIT = total;
+        if (prop === 'AB') totalAB = total;
+        if (prop === 'BB') totalBB = total;
+        if (prop === 'SF') totalSF = total;
+
+        sums[index] = Number.isInteger(total) ? total : total.toFixed(2);
+      });
+
+      // AVG = HIT / AB
+      const avgIndex = columns.findIndex(col => col.property === 'AVG');
+      if (avgIndex !== -1) {
+        const avg = totalAB > 0 ? (totalHIT / totalAB).toFixed(3) : '0.000';
+        sums[avgIndex] = avg;
+      }
+
+      // OBP = (HIT + BB) / (AB + BB + SF)
+      const obpIndex = columns.findIndex(col => col.property === 'OBP');
+      if (obpIndex !== -1) {
+        const denominator = totalAB + totalBB + totalSF;
+        const obp = denominator > 0 ? ((totalHIT + totalBB) / denominator).toFixed(3) : '0.000';
+        sums[obpIndex] = obp;
+      }
+
+      return sums;
     }
   },
   watch: {

@@ -7,7 +7,7 @@
       <BannerHome ref="bannerHomeChild"></BannerHome>
     </div>
 
-    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4 mt-5">
+    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4 mt-5 mb-5">
       <el-card class="box-card rounded-[8px] my-5" :body-style="{ padding: '0px'}" shadow="never" >
         <div slot="header" class="text-2xl font-semibold text-[#003364]">
           <span>最新消息</span>
@@ -26,7 +26,7 @@
       </el-card>
     </div>
 
-    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4">
+    <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-20 el-col-md-offset-2 el-col-lg-16 el-col-lg-offset-4 mt-5">
       <el-row :gutter="40" style="display:flex;flex-wrap:wrap;">
         <!-- <el-col class="el-col el-col-12 el-col-xs-24 el-col-sm-24  el-col-md-12 el-col-lg-12 mb-10">
           <el-card class="box-card rounded-[8px] my-5" :body-style="{ padding: '0px'}" shadow="never" >
@@ -63,7 +63,7 @@
 
         <el-col class="el-col el-col-24 el-col-xs-24 el-col-sm-24  el-col-md-24 el-col-lg-24 mb-10">
 
-          <el-card class="box-card rounded-[8px] my-5" :body-style="{ padding: '0px'}" shadow="never" >
+          <el-card class="box-card rounded-[8px]" :body-style="{ padding: '0px'}" shadow="never" >
             <div slot="header" class="text-2xl font-semibold text-[#003364]">
               <span>最近賽事</span>
             </div>
