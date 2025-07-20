@@ -21,16 +21,16 @@
           <el-table :data="tableBatterRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}">
             <el-table-column prop="number" label="背號" width='75%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
             <el-table-column prop="name" label="姓名"sortable :sort-method = "(a,b)=>{return a.name - b.name}"></el-table-column>
-            <el-table-column prop="GP" label="出賽" sortable :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
-            <el-table-column prop="PA" label="打席" sortable :sort-method = "(a,b)=>{return a.PA - b.PA}"></el-table-column>
-            <el-table-column prop="AB" label="打數" sortable :sort-method = "(a,b)=>{return a.AB - b.AB}"></el-table-column>
-            <el-table-column prop="HIT" label="安打" sortable :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
+            <el-table-column prop="GP" label="出賽" sortable width='75%' :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
+            <el-table-column prop="PA" label="打席" sortable width='75%' :sort-method = "(a,b)=>{return a.PA - b.PA}"></el-table-column>
+            <el-table-column prop="AB" label="打數" sortable width='75%' :sort-method = "(a,b)=>{return a.AB - b.AB}"></el-table-column>
+            <el-table-column prop="HIT" label="安打" sortable width='75%' :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
             <el-table-column prop="AVG" label="打擊率" width='100%' sortable :sort-method = "(a,b)=>{return a.AVG - b.AVG}"></el-table-column>
-            <el-table-column prop="RBI" label="打點" sortable :sort-method = "(a,b)=>{return a.RBI - b.RBI}"></el-table-column>
-            <el-table-column prop="R" label="得分" sortable :sort-method = "(a,b)=>{return a.R - b.R}"></el-table-column>
-            <el-table-column prop="SB" label="盜壘" sortable :sort-method = "(a,b)=>{return a.SB - b.SB}"></el-table-column>
-            <el-table-column prop="K" label="三振" sortable :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
-            <el-table-column prop="BB" label="保送" sortable :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
+            <el-table-column prop="RBI" label="打點" sortable width='75%' :sort-method = "(a,b)=>{return a.RBI - b.RBI}"></el-table-column>
+            <el-table-column prop="R" label="得分" sortable width='75%' :sort-method = "(a,b)=>{return a.R - b.R}"></el-table-column>
+            <el-table-column prop="SB" label="盜壘" sortable width='75%' :sort-method = "(a,b)=>{return a.SB - b.SB}"></el-table-column>
+            <el-table-column prop="K" label="三振" sortable width='75%' :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
+            <el-table-column prop="BB" label="保送" sortable width='75%' :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
             <el-table-column prop="SF" label="犧牲飛球" width='100%' sortable :sort-method = "(a,b)=>{return a.SF - b.SF}"></el-table-column>
             <el-table-column prop="OBP" label="上壘率" width='100%' sortable :sort-method = "(a,b)=>{return a.OBP - b.OBP}"></el-table-column>
             <el-table-column prop="HR" label="全壘打" width='100%' sortable :sort-method = "(a,b)=>{return a.HR - b.HR}"></el-table-column>
