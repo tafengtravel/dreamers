@@ -5,7 +5,7 @@
     </div>
     <div class ="el-col el-col-24 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-16 el-col-md-offset-4 el-col-lg-16 el-col-lg-offset-4 my-5">
 
-      <el-card class="box-card rounded-[8px] my-9" :body-style="{ padding: '0px'}" shadow="never" v-for="item in totalGameRecord">
+      <el-card class="box-card rounded-[8px] my-9" :body-style="{ padding: '0px'}" style=" height: auto !important;" shadow="never" v-for="item in totalGameRecord" v-if="item.teamRecord.length >= 2">
         <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1 my-7">
          
           <el-col class ="el-col mt-1 mb-4">
@@ -186,6 +186,8 @@ export default {
         totalGameRecord[i].mvp = data.values[6][1] || ""
       }
     }
+    
+    totalGameRecord.sort((a, b) => new Date(b.gameDate) - new Date(a.gameDate))
     console.log(totalGameRecord)
 
     return {

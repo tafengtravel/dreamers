@@ -340,7 +340,6 @@ export default {
       totalGameRecord:[],
       isOverflow: false,
 
-      batterData:''
 
     };
   },
@@ -590,7 +589,6 @@ export default {
       boxSheets:boxSheets,
       totalGameRecord:totalGameRecord,
 
-      batterData:batterData
     }
 
   },
@@ -613,7 +611,7 @@ export default {
   },
   mounted() {
     
-    console.log(this.batterData)
+    console.log(this.batterRecord)
 
   }
 }
