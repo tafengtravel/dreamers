@@ -183,10 +183,10 @@ export default {
     },
     getSummaries({ columns, data }) {
       const sums = [];
-      let totalER = 0;
-      let totalIP = 0;
       let totalHIT = 0;
+      let totalAB = 0;
       let totalBB = 0;
+      let totalSF = 0;
 
       columns.forEach((column, index) => {
         const prop = column.property;
@@ -196,48 +196,45 @@ export default {
           return;
         }
 
-        // 不加總的欄位
         if (prop === 'number' || prop === 'name' || prop === 'year') {
           sums[index] = '';
           return;
         }
 
-        // ERA 和 WHIP 暫時空白，後面補
-        if (prop === 'ERA' || prop === 'WHIP') {
-          sums[index] = '';
+        if (prop === 'AVG' || prop === 'OBP') {
+          sums[index] = ''; // 暫時留空，後面再補
           return;
         }
 
-        // 一般數值加總
         const values = data.map(item => Number(item[prop]));
         const validValues = values.filter(val => !isNaN(val));
         const total = validValues.reduce((sum, val) => sum + val, 0);
 
-        if (prop === 'ER') totalER = total;
-        if (prop === 'IP') totalIP = total;
         if (prop === 'HIT') totalHIT = total;
+        if (prop === 'AB') totalAB = total;
         if (prop === 'BB') totalBB = total;
+        if (prop === 'SF') totalSF = total;
 
         sums[index] = Number.isInteger(total) ? total : total.toFixed(2);
       });
 
-      // ERA = (ER * 7) / IP
-      const eraIndex = columns.findIndex(col => col.property === 'ERA');
-      if (eraIndex !== -1) {
-        const era = totalIP > 0 ? ((totalER * 7) / totalIP).toFixed(2) : '0.00';
-        sums[eraIndex] = era;
+      // AVG = HIT / AB
+      const avgIndex = columns.findIndex(col => col.property === 'AVG');
+      if (avgIndex !== -1) {
+        const avg = totalAB > 0 ? (totalHIT / totalAB).toFixed(3) : '0.000';
+        sums[avgIndex] = avg;
       }
 
-      // WHIP = (HIT + BB) / IP
-      const whipIndex = columns.findIndex(col => col.property === 'WHIP');
-      if (whipIndex !== -1) {
-        const whip = totalIP > 0 ? ((totalHIT + totalBB) / totalIP).toFixed(2) : '0.00';
-        sums[whipIndex] = whip;
+      // OBP = (HIT + BB) / (AB + BB + SF)
+      const obpIndex = columns.findIndex(col => col.property === 'OBP');
+      if (obpIndex !== -1) {
+        const denominator = totalAB + totalBB + totalSF;
+        const obp = denominator > 0 ? ((totalHIT + totalBB) / denominator).toFixed(3) : '0.000';
+        sums[obpIndex] = obp;
       }
 
       return sums;
     }
-
   },
   watch: {
 

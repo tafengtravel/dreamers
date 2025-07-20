@@ -26,8 +26,8 @@
             <el-table-column prop="GS" label="先發數" width='100%' sortable :sort-method = "(a,b)=>{return a.GS - b.GS}"></el-table-column>
             <el-table-column prop="GIF" label="中繼數" width='100%' sortable :sort-method = "(a,b)=>{return a.GIF - b.GIF}"></el-table-column>
             <el-table-column prop="IP" label="局數" width='75%' sortable :sort-method = "(a,b)=>{return a.IP - b.IP}"></el-table-column>
-            <el-table-column prop="W" label="勝" width='75%' sortable :sort-method = "(a,b)=>{return a.W - b.W}"></el-table-column>
-            <el-table-column prop="L" label="敗" width='75%' sortable :sort-method = "(a,b)=>{return a.L - b.L}"></el-table-column>
+            <el-table-column prop="W" label="勝" width='60%' sortable :sort-method = "(a,b)=>{return a.W - b.W}"></el-table-column>
+            <el-table-column prop="L" label="敗" width='60%' sortable :sort-method = "(a,b)=>{return a.L - b.L}"></el-table-column>
             <el-table-column prop="SV" label="救援成功" width='100%' sortable :sort-method = "(a,b)=>{return a.SV - b.SV}"></el-table-column>
             <el-table-column prop="HLD" label="中繼點" width='100%' sortable :sort-method = "(a,b)=>{return a.HLD - b.HLD}"></el-table-column>
             <el-table-column prop="ERA" label="防禦率" width='100%' sortable :sort-method = "(a,b)=>{return a.ERA - b.ERA}"></el-table-column>
@@ -186,7 +186,64 @@ export default {
       if (player) {
         this.tablePitcherRecord = player.record;
       }
+    },
+    getSummaries({ columns, data }) {
+      const sums = [];
+      let totalER = 0;
+      let totalIP = 0;
+      let totalHIT = 0;
+      let totalBB = 0;
+
+      columns.forEach((column, index) => {
+        const prop = column.property;
+
+        if (index === 0) {
+          sums[index] = '總計';
+          return;
+        }
+
+        // 不加總的欄位
+        if (prop === 'number' || prop === 'name' || prop === 'year') {
+          sums[index] = '';
+          return;
+        }
+
+        // ERA 和 WHIP 暫時空白，後面補
+        if (prop === 'ERA' || prop === 'WHIP') {
+          sums[index] = '';
+          return;
+        }
+
+        // 一般數值加總
+        const values = data.map(item => Number(item[prop]));
+        const validValues = values.filter(val => !isNaN(val));
+        const total = validValues.reduce((sum, val) => sum + val, 0);
+
+        if (prop === 'ER') totalER = total;
+        if (prop === 'IP') totalIP = total;
+        if (prop === 'HIT') totalHIT = total;
+        if (prop === 'BB') totalBB = total;
+
+        sums[index] = Number.isInteger(total) ? total : total.toFixed(2);
+      });
+
+      // ERA = (ER * 7) / IP
+      const eraIndex = columns.findIndex(col => col.property === 'ERA');
+      if (eraIndex !== -1) {
+        const era = totalIP > 0 ? ((totalER * 7) / totalIP).toFixed(2) : '0.00';
+        sums[eraIndex] = era;
+      }
+
+      // WHIP = (HIT + BB) / IP
+      const whipIndex = columns.findIndex(col => col.property === 'WHIP');
+      if (whipIndex !== -1) {
+        const whip = totalIP > 0 ? ((totalHIT + totalBB) / totalIP).toFixed(2) : '0.00';
+        sums[whipIndex] = whip;
+      }
+
+      return sums;
     }
+
   },
   watch: {
 
