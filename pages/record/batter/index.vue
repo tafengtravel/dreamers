@@ -19,19 +19,20 @@
         </div>
         <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
           <el-table :data="tableBatterRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}" show-summary :summary-method="getSummaries">
-            <el-table-column prop="number" label="背號" width='75%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
+            <el-table-column type="index" label="#" width="60%" fixed></el-table-column>
+            <el-table-column prop="number" label="背號" width='80%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
             <el-table-column prop="name" label="姓名"sortable :sort-method = "(a,b)=>{return a.name - b.name}"></el-table-column>
-            <el-table-column prop="GP" label="出賽" sortable width='75%' :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
-            <el-table-column prop="PA" label="打席" sortable width='75%' :sort-method = "(a,b)=>{return a.PA - b.PA}"></el-table-column>
-            <el-table-column prop="AB" label="打數" sortable width='75%' :sort-method = "(a,b)=>{return a.AB - b.AB}"></el-table-column>
-            <el-table-column prop="HIT" label="安打" sortable width='75%' :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
+            <el-table-column prop="GP" label="出賽" sortable width='80%' :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
+            <el-table-column prop="PA" label="打席" sortable width='80%' :sort-method = "(a,b)=>{return a.PA - b.PA}"></el-table-column>
+            <el-table-column prop="AB" label="打數" sortable width='80%' :sort-method = "(a,b)=>{return a.AB - b.AB}"></el-table-column>
+            <el-table-column prop="HIT" label="安打" sortable width='80%' :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
             <el-table-column prop="AVG" label="打擊率" width='100%' sortable :sort-method = "(a,b)=>{return a.AVG - b.AVG}"></el-table-column>
-            <el-table-column prop="RBI" label="打點" sortable width='75%' :sort-method = "(a,b)=>{return a.RBI - b.RBI}"></el-table-column>
-            <el-table-column prop="R" label="得分" sortable width='75%' :sort-method = "(a,b)=>{return a.R - b.R}"></el-table-column>
-            <el-table-column prop="SB" label="盜壘" sortable width='75%' :sort-method = "(a,b)=>{return a.SB - b.SB}"></el-table-column>
-            <el-table-column prop="K" label="三振" sortable width='75%' :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
-            <el-table-column prop="BB" label="保送" sortable width='75%' :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
-            <el-table-column prop="SF" label="犧牲飛球" width='100%' sortable :sort-method = "(a,b)=>{return a.SF - b.SF}"></el-table-column>
+            <el-table-column prop="RBI" label="打點" sortable width='80%' :sort-method = "(a,b)=>{return a.RBI - b.RBI}"></el-table-column>
+            <el-table-column prop="R" label="得分" sortable width='80%' :sort-method = "(a,b)=>{return a.R - b.R}"></el-table-column>
+            <el-table-column prop="SB" label="盜壘" sortable width='80%' :sort-method = "(a,b)=>{return a.SB - b.SB}"></el-table-column>
+            <el-table-column prop="K" label="三振" sortable width='80%' :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
+            <el-table-column prop="BB" label="保送" sortable width='80%' :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
+            <el-table-column prop="SF" label="犧牲飛球" width='110%' sortable :sort-method = "(a,b)=>{return a.SF - b.SF}"></el-table-column>
             <el-table-column prop="OBP" label="上壘率" width='100%' sortable :sort-method = "(a,b)=>{return a.OBP - b.OBP}"></el-table-column>
             <el-table-column prop="HR" label="全壘打" width='100%' sortable :sort-method = "(a,b)=>{return a.HR - b.HR}"></el-table-column>
           </el-table>
@@ -61,7 +62,8 @@ export default {
       ],
       yearChoose: '',
       batterRecord:[],
-      tableBatterRecord:[]
+      tableBatterRecord:[],
+      totalBatterRecord:[]
     }
   },
   head() {
@@ -96,6 +98,15 @@ export default {
       })
     });
 
+    optionsYear.sort((a, b) => {
+      return parseInt(b.value) - parseInt(a.value);
+    });
+
+    optionsYear.unshift({
+      label: '總計',
+      value: 'total'
+    });
+
     for(let i=0;i<batterRecord.length;i++){
       let { data } = await axios.get(batterUrlId+"/values/'"+batterSheets.sheets[i].properties.title+"'!A2:O?key="+apiKey)
       if(batterSheets.sheets[i].properties.title == batterRecord[i].year){
@@ -121,9 +132,74 @@ export default {
       }
     }
 
+    // 依球員姓名累加總成績
+    let playerMap = new Map();
+
+    batterRecord.forEach(season => {
+      season.player.forEach(p => {
+        const key = p.name;
+        if (!playerMap.has(key)) {
+          playerMap.set(key, {
+            ...p,
+            GP: Number(p.GP),
+            PA: Number(p.PA),
+            AB: Number(p.AB),
+            HIT: Number(p.HIT),
+            RBI: Number(p.RBI),
+            R: Number(p.R),
+            SB: Number(p.SB),
+            K: Number(p.K),
+            BB: Number(p.BB),
+            SF: Number(p.SF),
+            HR: Number(p.HR)
+          });
+        } else {
+          const acc = playerMap.get(key);
+          acc.GP += Number(p.GP);
+          acc.PA += Number(p.PA);
+          acc.AB += Number(p.AB);
+          acc.HIT += Number(p.HIT);
+          acc.RBI += Number(p.RBI);
+          acc.R += Number(p.R);
+          acc.SB += Number(p.SB);
+          acc.K += Number(p.K);
+          acc.BB += Number(p.BB);
+          acc.SF += Number(p.SF);
+          acc.HR += Number(p.HR);
+        }
+      });
+    });
+
+    // 計算 AVG / OBP
+    let totalBatterRecord = [];
+    for (const [name, p] of playerMap.entries()) {
+      const avg = p.AB > 0 ? (p.HIT / p.AB).toFixed(3) : '0.000';
+      const obpDenom = p.AB + p.BB + p.SF;
+      const obp = obpDenom > 0 ? ((p.HIT + p.BB) / obpDenom).toFixed(3) : '0.000';
+
+      totalBatterRecord.push({
+        number: p.number,
+        name: name,
+        GP: p.GP,
+        PA: p.PA,
+        AB: p.AB,
+        HIT: p.HIT,
+        AVG: avg,
+        RBI: p.RBI,
+        R: p.R,
+        SB: p.SB,
+        K: p.K,
+        BB: p.BB,
+        SF: p.SF,
+        OBP: obp,
+        HR: p.HR
+      });
+    }
+
     return {
       optionsYear:optionsYear,
-      batterRecord:batterRecord
+      batterRecord:batterRecord,
+      totalBatterRecord:totalBatterRecord
     }
   },
   methods: {
@@ -134,6 +210,10 @@ export default {
       return '';
     },
     handleChangeYear(value){
+      if (value === 'total') {
+        this.tableBatterRecord = this.totalBatterRecord;
+        return;
+      }
       this.batterRecord.forEach(element => {
         if(value == element.year){
           this.tableBatterRecord = element.player
@@ -199,8 +279,9 @@ export default {
 
   },
   mounted() {
-    this.tableBatterRecord = this.batterRecord[this.batterRecord.length-1].player
-    this.yearChoose = this.batterRecord[this.batterRecord.length-1].year
+    const latestYear = this.batterRecord[this.batterRecord.length - 1].year;
+    this.yearChoose = latestYear;
+    this.tableBatterRecord = this.batterRecord.find(x => x.year === latestYear).player;
   }
 }
 </script>
@@ -208,6 +289,9 @@ export default {
 <style>
 .el-table .color-row {
   background: #C9D6E0;
+}
+.el-table {
+  font-size: 16px;
 }
 </style>
 

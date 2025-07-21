@@ -18,21 +18,21 @@
           </el-select>
         </div>
         <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
-          <el-table :data="tableBatterRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}" show-summary :summary-method="getSummaries">
-            <el-table-column prop="number" label="背號" width='75%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
+          <el-table :data="tableBatterRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'year', order: 'descending'}" show-summary :summary-method="getSummaries">
+            <el-table-column prop="number" label="背號" width='80%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
             <el-table-column prop="name" label="姓名"sortable :sort-method = "(a,b)=>{return a.name - b.name}"></el-table-column>
             <el-table-column prop="year" label="年度"sortable width='100%' :sort-method = "(a,b)=>{return a.year - b.year}"></el-table-column>
-            <el-table-column prop="GP" label="出賽" sortable width='75%' :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
-            <el-table-column prop="PA" label="打席" sortable width='75%' :sort-method = "(a,b)=>{return a.PA - b.PA}"></el-table-column>
-            <el-table-column prop="AB" label="打數" sortable width='75%' :sort-method = "(a,b)=>{return a.AB - b.AB}"></el-table-column>
-            <el-table-column prop="HIT" label="安打" sortable width='75%' :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
+            <el-table-column prop="GP" label="出賽" sortable width='80%' :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
+            <el-table-column prop="PA" label="打席" sortable width='80%' :sort-method = "(a,b)=>{return a.PA - b.PA}"></el-table-column>
+            <el-table-column prop="AB" label="打數" sortable width='80%' :sort-method = "(a,b)=>{return a.AB - b.AB}"></el-table-column>
+            <el-table-column prop="HIT" label="安打" sortable width='80%' :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
             <el-table-column prop="AVG" label="打擊率" width='100%' sortable :sort-method = "(a,b)=>{return a.AVG - b.AVG}"></el-table-column>
-            <el-table-column prop="RBI" label="打點" sortable width='75%' :sort-method = "(a,b)=>{return a.RBI - b.RBI}"></el-table-column>
-            <el-table-column prop="R" label="得分" sortable width='75%' :sort-method = "(a,b)=>{return a.R - b.R}"></el-table-column>
-            <el-table-column prop="SB" label="盜壘" sortable width='75%' :sort-method = "(a,b)=>{return a.SB - b.SB}"></el-table-column>
-            <el-table-column prop="K" label="三振" sortable width='75%' :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
-            <el-table-column prop="BB" label="保送" sortable width='75%' :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
-            <el-table-column prop="SF" label="犧牲飛球" width='100%' sortable :sort-method = "(a,b)=>{return a.SF - b.SF}"></el-table-column>
+            <el-table-column prop="RBI" label="打點" sortable width='80%' :sort-method = "(a,b)=>{return a.RBI - b.RBI}"></el-table-column>
+            <el-table-column prop="R" label="得分" sortable width='80%' :sort-method = "(a,b)=>{return a.R - b.R}"></el-table-column>
+            <el-table-column prop="SB" label="盜壘" sortable width='80%' :sort-method = "(a,b)=>{return a.SB - b.SB}"></el-table-column>
+            <el-table-column prop="K" label="三振" sortable width='80%' :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
+            <el-table-column prop="BB" label="保送" sortable width='80%' :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
+            <el-table-column prop="SF" label="犧牲飛球" width='110%' sortable :sort-method = "(a,b)=>{return a.SF - b.SF}"></el-table-column>
             <el-table-column prop="OBP" label="上壘率" width='100%' sortable :sort-method = "(a,b)=>{return a.OBP - b.OBP}"></el-table-column>
             <el-table-column prop="HR" label="全壘打" width='100%' sortable :sort-method = "(a,b)=>{return a.HR - b.HR}"></el-table-column>
           </el-table>
@@ -241,8 +241,8 @@ export default {
   },
   mounted() {
     if (this.playerRecord.length > 0) {
-      this.playerChoose = this.playerRecord[this.playerRecord.length - 1].player;
-      this.tableBatterRecord = this.playerRecord[this.playerRecord.length - 1].record;
+      this.playerChoose = this.playerRecord[0].player;
+      this.tableBatterRecord = this.playerRecord[0].record;
     }
     console.log(this.playerMap)
     
@@ -253,6 +253,9 @@ export default {
 <style>
 .el-table .color-row {
   background: #C9D6E0;
+}
+.el-table {
+  font-size: 16px;
 }
 </style>
 

@@ -19,22 +19,23 @@
         </div>
         <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
           <el-table :data="tablePitcherRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}" show-summary :summary-method="getSummaries">
-            <el-table-column prop="number" label="背號" width='75%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
+            <el-table-column type="index" label="#" width="60%" fixed></el-table-column>
+            <el-table-column prop="number" label="背號" width='80%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
             <el-table-column prop="name" label="姓名" sortable :sort-method = "(a,b)=>{return a.name - b.name}"></el-table-column>
-            <el-table-column prop="GP" label="出賽" width='75%' sortable :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
+            <el-table-column prop="GP" label="出賽" width='80%' sortable :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
             <el-table-column prop="GS" label="先發數" width='100%' sortable :sort-method = "(a,b)=>{return a.GS - b.GS}"></el-table-column>
             <el-table-column prop="GIF" label="中繼數" width='100%' sortable :sort-method = "(a,b)=>{return a.GIF - b.GIF}"></el-table-column>
-            <el-table-column prop="IP" label="局數" width='75%' sortable :sort-method = "(a,b)=>{return a.IP - b.IP}"></el-table-column>
+            <el-table-column prop="IP" label="局數" width='80%' sortable :sort-method = "(a,b)=>{return a.IP - b.IP}"></el-table-column>
             <el-table-column prop="W" label="勝" width='60%' sortable :sort-method = "(a,b)=>{return a.W - b.W}"></el-table-column>
             <el-table-column prop="L" label="敗" width='60%' sortable :sort-method = "(a,b)=>{return a.L - b.L}"></el-table-column>
-            <el-table-column prop="SV" label="救援成功" width='100%' sortable :sort-method = "(a,b)=>{return a.SV - b.SV}"></el-table-column>
+            <el-table-column prop="SV" label="救援成功" width='110%' sortable :sort-method = "(a,b)=>{return a.SV - b.SV}"></el-table-column>
             <el-table-column prop="HLD" label="中繼點" width='100%' sortable :sort-method = "(a,b)=>{return a.HLD - b.HLD}"></el-table-column>
             <el-table-column prop="ERA" label="防禦率" width='100%' sortable :sort-method = "(a,b)=>{return a.ERA - b.ERA}"></el-table-column>
-            <el-table-column prop="K" label="三振" width='75%' sortable :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
-            <el-table-column prop="BB" label="保送" width='75%' sortable :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
+            <el-table-column prop="K" label="三振" width='80%' sortable :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
+            <el-table-column prop="BB" label="保送" width='80%' sortable :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
             <el-table-column prop="HIT" label="被安打" width='100%' sortable :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
-            <el-table-column prop="UR" label="失分" width='75%' sortable :sort-method = "(a,b)=>{return a.UR - b.UR}"></el-table-column>
-            <el-table-column prop="ER" label="責失" width='75%' sortable :sort-method = "(a,b)=>{return a.ER - b.ER}"></el-table-column>
+            <el-table-column prop="UR" label="失分" width='80%' sortable :sort-method = "(a,b)=>{return a.UR - b.UR}"></el-table-column>
+            <el-table-column prop="ER" label="責失" width='80%' sortable :sort-method = "(a,b)=>{return a.ER - b.ER}"></el-table-column>
             <el-table-column prop="WHIP" label="WHIP" width='100%' sortable :sort-method = "(a,b)=>{return a.WHIP - b.WHIP}"></el-table-column>
           </el-table>
         </div>
@@ -63,7 +64,8 @@ export default {
       ],
       yearChoose: '',
       pitcherRecord:[],
-      tablePitcherRecord:[]
+      tablePitcherRecord:[],
+      totalPitcherRecord:[],
     }
   },
   head() {
@@ -98,6 +100,15 @@ export default {
       })
     });
 
+    optionsYear.sort((a, b) => {
+      return parseInt(b.value) - parseInt(a.value);
+    });
+
+    optionsYear.unshift({
+      label: '總計',
+      value: 'total'
+    });
+
     for(let i=0;i<pitcherRecord.length;i++){
       let { data } = await axios.get(pitcherUrlId+"/values/'"+pitcherSheets.sheets[i].properties.title+"'!A2:Q?key="+apiKey)
       if(pitcherSheets.sheets[i].properties.title == pitcherRecord[i].year){
@@ -125,9 +136,84 @@ export default {
       }
     }
 
+    // 以下為投手總計
+    let playerMap = new Map();
+
+    pitcherRecord.forEach(season => {
+      season.player.forEach(p => {
+        const key = p.name;
+        const ip = parseFloat(p.IP) || 0;
+        const er = parseFloat(p.ER) || 0;
+        const hit = parseFloat(p.HIT) || 0;
+        const bb = parseFloat(p.BB) || 0;
+
+        if (!playerMap.has(key)) {
+          playerMap.set(key, {
+            ...p,
+            GP: Number(p.GP),
+            GS: Number(p.GS),
+            GIF: Number(p.GIF),
+            IP: ip,
+            W: Number(p.W),
+            L: Number(p.L),
+            SV: Number(p.SV),
+            HLD: Number(p.HLD),
+            K: Number(p.K),
+            BB: bb,
+            HIT: hit,
+            UR: Number(p.UR),
+            ER: er,
+          });
+        } else {
+          const acc = playerMap.get(key);
+          acc.GP += Number(p.GP);
+          acc.GS += Number(p.GS);
+          acc.GIF += Number(p.GIF);
+          acc.IP += ip;
+          acc.W += Number(p.W);
+          acc.L += Number(p.L);
+          acc.SV += Number(p.SV);
+          acc.HLD += Number(p.HLD);
+          acc.K += Number(p.K);
+          acc.BB += bb;
+          acc.HIT += hit;
+          acc.UR += Number(p.UR);
+          acc.ER += er;
+        }
+      });
+    });
+
+    let totalPitcherRecord = [];
+
+    for (const [name, p] of playerMap.entries()) {
+      const era = p.IP > 0 ? ((p.ER * 7) / p.IP).toFixed(2) : '0.00';
+      const whip = p.IP > 0 ? ((p.HIT + p.BB) / p.IP).toFixed(2) : '0.00';
+
+      totalPitcherRecord.push({
+        number: p.number,
+        name: name,
+        GP: p.GP,
+        GS: p.GS,
+        GIF: p.GIF,
+        IP: p.IP.toFixed(1),
+        W: p.W,
+        L: p.L,
+        SV: p.SV,
+        HLD: p.HLD,
+        ERA: era,
+        K: p.K,
+        BB: p.BB,
+        HIT: p.HIT,
+        UR: p.UR,
+        ER: p.ER,
+        WHIP: whip
+      });
+    }
+
     return {
       optionsYear:optionsYear,
-      pitcherRecord:pitcherRecord
+      pitcherRecord:pitcherRecord,
+      totalPitcherRecord:totalPitcherRecord
     }
   },
   methods: {
@@ -138,6 +224,11 @@ export default {
       return '';
     },
     handleChangeYear(value){
+      if (value === 'total') {
+        this.tablePitcherRecord = this.totalPitcherRecord;
+        return;
+      }
+
       this.pitcherRecord.forEach(element => {
         if(value == element.year){
           this.tablePitcherRecord = element.player
@@ -206,8 +297,9 @@ export default {
 
   },
   mounted() {
-    this.tablePitcherRecord = this.pitcherRecord[this.pitcherRecord.length-1].player
-    this.yearChoose = this.pitcherRecord[this.pitcherRecord.length-1].year
+    const latestYear = this.pitcherRecord[this.pitcherRecord.length - 1].year;
+    this.yearChoose = latestYear;
+    this.tablePitcherRecord = this.pitcherRecord.find(x => x.year === latestYear).player;
   }
 }
 </script>
@@ -215,6 +307,9 @@ export default {
 <style>
 .el-table .color-row {
   background: #C9D6E0;
+}
+.el-table {
+  font-size: 16px;
 }
 </style>
 

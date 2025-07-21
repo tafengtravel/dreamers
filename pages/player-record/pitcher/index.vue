@@ -18,24 +18,24 @@
           </el-select>
         </div>
         <div class ="el-col el-col-22 el-col-xs-22 el-col-xs-offset-1 el-col-sm-22 el-col-sm-offset-1 el-col-md-22 el-col-md-offset-1 el-col-lg-22 el-col-lg-offset-1">
-          <el-table :data="tablePitcherRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'number', order: 'ascending'}" show-summary :summary-method="getSummaries">
-            <el-table-column prop="number" label="背號" width='75%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
+          <el-table :data="tablePitcherRecord" style="width: 100%" :row-class-name="tableRowClassName" :default-sort = "{prop: 'year', order: 'descending'}" show-summary :summary-method="getSummaries">
+            <el-table-column prop="number" label="背號" width='80%' fixed sortable :sort-method = "(a,b)=>{return a.number - b.number}"></el-table-column>
             <el-table-column prop="name" label="姓名" sortable :sort-method = "(a,b)=>{return a.name - b.name}"></el-table-column>
             <el-table-column prop="year" label="年度"sortable width='100%' :sort-method = "(a,b)=>{return a.year - b.year}"></el-table-column>
-            <el-table-column prop="GP" label="出賽" width='75%' sortable :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
+            <el-table-column prop="GP" label="出賽" width='80%' sortable :sort-method = "(a,b)=>{return a.GP - b.GP}"></el-table-column>
             <el-table-column prop="GS" label="先發數" width='100%' sortable :sort-method = "(a,b)=>{return a.GS - b.GS}"></el-table-column>
             <el-table-column prop="GIF" label="中繼數" width='100%' sortable :sort-method = "(a,b)=>{return a.GIF - b.GIF}"></el-table-column>
-            <el-table-column prop="IP" label="局數" width='75%' sortable :sort-method = "(a,b)=>{return a.IP - b.IP}"></el-table-column>
+            <el-table-column prop="IP" label="局數" width='80%' sortable :sort-method = "(a,b)=>{return a.IP - b.IP}"></el-table-column>
             <el-table-column prop="W" label="勝" width='60%' sortable :sort-method = "(a,b)=>{return a.W - b.W}"></el-table-column>
             <el-table-column prop="L" label="敗" width='60%' sortable :sort-method = "(a,b)=>{return a.L - b.L}"></el-table-column>
-            <el-table-column prop="SV" label="救援成功" width='100%' sortable :sort-method = "(a,b)=>{return a.SV - b.SV}"></el-table-column>
+            <el-table-column prop="SV" label="救援成功" width='110%' sortable :sort-method = "(a,b)=>{return a.SV - b.SV}"></el-table-column>
             <el-table-column prop="HLD" label="中繼點" width='100%' sortable :sort-method = "(a,b)=>{return a.HLD - b.HLD}"></el-table-column>
             <el-table-column prop="ERA" label="防禦率" width='100%' sortable :sort-method = "(a,b)=>{return a.ERA - b.ERA}"></el-table-column>
-            <el-table-column prop="K" label="三振" width='75%' sortable :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
-            <el-table-column prop="BB" label="保送" width='75%' sortable :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
+            <el-table-column prop="K" label="三振" width='80%' sortable :sort-method = "(a,b)=>{return a.K - b.K}"></el-table-column>
+            <el-table-column prop="BB" label="保送" width='80%' sortable :sort-method = "(a,b)=>{return a.BB - b.BB}"></el-table-column>
             <el-table-column prop="HIT" label="被安打" width='100%' sortable :sort-method = "(a,b)=>{return a.HIT - b.HIT}"></el-table-column>
-            <el-table-column prop="UR" label="失分" width='75%' sortable :sort-method = "(a,b)=>{return a.UR - b.UR}"></el-table-column>
-            <el-table-column prop="ER" label="責失" width='75%' sortable :sort-method = "(a,b)=>{return a.ER - b.ER}"></el-table-column>
+            <el-table-column prop="UR" label="失分" width='80%' sortable :sort-method = "(a,b)=>{return a.UR - b.UR}"></el-table-column>
+            <el-table-column prop="ER" label="責失" width='80%' sortable :sort-method = "(a,b)=>{return a.ER - b.ER}"></el-table-column>
             <el-table-column prop="WHIP" label="WHIP" width='100%' sortable :sort-method = "(a,b)=>{return a.WHIP - b.WHIP}"></el-table-column>
           </el-table>
         </div>
@@ -250,8 +250,8 @@ export default {
   },
   mounted() {
     if (this.playerRecord.length > 0) {
-      this.playerChoose = this.playerRecord[this.playerRecord.length - 1].player;
-      this.tablePitcherRecord = this.playerRecord[this.playerRecord.length - 1].record;
+      this.playerChoose = this.playerRecord[0].player;
+      this.tablePitcherRecord = this.playerRecord[0].record;
     }
     console.log(this.playerMap)
   }
@@ -261,6 +261,9 @@ export default {
 <style>
 .el-table .color-row {
   background: #C9D6E0;
+}
+.el-table {
+  font-size: 16px;
 }
 </style>
 
