@@ -463,7 +463,7 @@ export default {
     batterRecordSB = batterRecordSB.sort((a, b) => (b.SB - a.SB));
     batterRecordSB = batterRecordSB.slice(0,5)
 
-    if(batterRecordHR[0].HR == '0'){
+    if(batterRecordHR[0].HR == '0' || batterRecordHR[0].HR == NaN){
       batterRecordHR = []
     }
 
@@ -508,9 +508,9 @@ export default {
     pitcherRecordW = pitcherRecordW.slice(0,5)
     pitcherRecordSV = pitcherRecordSV.sort((a, b) => (b.SV - a.SV));
     pitcherRecordSV = pitcherRecordSV.slice(0,5)
-    pitcherRecordERA = pitcherRecordERA.sort((a, b) => (b.HLD - a.HLD));
+    pitcherRecordERA = pitcherRecordERA.sort((a, b) => (b.ERA - a.ERA));
     pitcherRecordERA = pitcherRecordERA.slice(0,5)
-    pitcherRecordHLD = pitcherRecordHLD.sort((a, b) => (a.ERA - b.ERA));
+    pitcherRecordHLD = pitcherRecordHLD.sort((a, b) => (a.HLD - b.HLD));
     pitcherRecordHLD = pitcherRecordHLD.slice(0,5)
     pitcherRecordK = pitcherRecordK.sort((a, b) => (b.K - a.K));
     pitcherRecordK = pitcherRecordK.slice(0,5)

@@ -17,11 +17,19 @@
             <li class="my-2">
               海外農場總監：王紀霖&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             </li>
-        
+
+            <li class="my-2 md:hidden">
+              總務：朱培銘
+            </li>
+            <li class="my-2 md:hidden">
+              視覺設計總監兼粉專小編：王立勝
+            </li>
+            <li class="my-2 ">
+              午餐股長：林世潾&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            </li>
           </ul> 
         </div>
-        <div>
-          <h2 class="mb-6 text-md font-semibold text-gray-900 uppercase"> </h2>
+        <div class="hidden md:block">
           <ul class="text-gray-600 text-md">
             <li class="my-2">
               <br>總務：朱培銘
